@@ -33,7 +33,7 @@ import { WidgetRenderingTimeoutForTests } from './constants';
 import { getTextOutputValue } from '../../../kernels/execution/helpers';
 
 /* eslint-disable @typescript-eslint/no-explicit-any, no-invalid-this, no-only-tests/no-only-tests */
-[true, false].forEach((useCDN) => {
+[false].forEach((useCDN) => {
     /**
      * Testing the following permutations:
      * - VSCode Web + Remote Jupyter + CDN
