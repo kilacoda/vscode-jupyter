@@ -31,7 +31,7 @@ import {
 import { initializeWidgetComms, Utils } from './commUtils';
 import { WidgetRenderingTimeoutForTests } from './constants';
 import { getTextOutputValue } from '../../../kernels/execution/helpers';
-import { GlobalStateKeyToTrackIfUserConfiguredCDNAtLeastOnce \} from '../../../kernels/ipywidgets/cdnWidgetScriptSourceProvider';
+import { GlobalStateKeyToTrackIfUserConfiguredCDNAtLeastOnce } from '../../../kernels/ipywidgets/cdnWidgetScriptSourceProvider';
 
 /* eslint-disable @typescript-eslint/no-explicit-any, no-invalid-this, no-only-tests/no-only-tests */
 [false].forEach((useCDN) => {
