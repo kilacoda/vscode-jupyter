@@ -7,10 +7,10 @@ import { assert } from 'chai';
 /* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires */
 import * as urlPath from '../../../platform/vscode-path/resources';
 import * as sinon from 'sinon';
-import { commands, ConfigurationTarget, NotebookCell, Uri, workspace } from 'vscode';
+import { commands, ConfigurationTarget, Memento, NotebookCell, Uri, workspace } from 'vscode';
 import { IVSCodeNotebook } from '../../../platform/common/application/types';
 import { traceInfo } from '../../../platform/logging';
-import { IDisposable } from '../../../platform/common/types';
+import { GLOBAL_MEMENTO, IDisposable, IMemento } from '../../../platform/common/types';
 import { IKernelProvider } from '../../../kernels/types';
 import { captureScreenShot, IExtensionTestApi, startJupyterServer, waitForCondition } from '../../common';
 import { closeActiveWindows, initialize } from '../../initialize';
@@ -31,6 +31,7 @@ import {
 import { initializeWidgetComms, Utils } from './commUtils';
 import { WidgetRenderingTimeoutForTests } from './constants';
 import { getTextOutputValue } from '../../../kernels/execution/helpers';
+import { GlobalStateKeyToTrackIfUserConfiguredCDNAtLeastOnce \} from '../../../kernels/ipywidgets/cdnWidgetScriptSourceProvider';
 
 /* eslint-disable @typescript-eslint/no-explicit-any, no-invalid-this, no-only-tests/no-only-tests */
 [false].forEach((useCDN) => {
@@ -76,6 +77,8 @@ import { getTextOutputValue } from '../../../kernels/execution/helpers';
             sinon.restore();
             vscodeNotebook = api.serviceContainer.get<IVSCodeNotebook>(IVSCodeNotebook);
             kernelProvider = api.serviceContainer.get<IKernelProvider>(IKernelProvider);
+            const memento = api.serviceContainer.get<Memento>(IMemento, GLOBAL_MEMENTO);
+            await memento.update(GlobalStateKeyToTrackIfUserConfiguredCDNAtLeastOnce, true);
             traceInfo('Suite Setup (completed)');
         });
         // Use same notebook without starting kernel in every single test (use one for whole suite).
