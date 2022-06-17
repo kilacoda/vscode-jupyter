@@ -198,8 +198,6 @@ export async function stopJupyterServer() {
 export async function captureScreenShot(fileNamePrefix: string) {
     if (API.captureScreenShot) {
         await API.captureScreenShot(fileNamePrefix);
-    } else {
-        console.error('Unable to Capture screenshot');
     }
 }
 
