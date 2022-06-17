@@ -91,6 +91,7 @@ import { getTextOutputValue } from '../../../kernels/execution/helpers';
         teardown(async function () {
             traceInfo(`Ended Test ${this.currentTest?.title}`);
             if (this.currentTest?.isFailed()) {
+                console.error('Capture screenshot');
                 await captureScreenShot(this.currentTest.title);
             }
             await closeNotebooksAndCleanUpAfterTests(disposables);
