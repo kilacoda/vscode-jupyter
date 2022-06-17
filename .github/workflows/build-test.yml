@@ -126,7 +126,7 @@ jobs:
         run: |
           echo "release_channel=stable" >> $GITHUB_ENV
 
-  build-vsix:
+#   build-vsix:
     needs: pick_environment
     name: Build VSIX
     runs-on: ubuntu-latest
