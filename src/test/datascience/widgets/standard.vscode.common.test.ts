@@ -43,7 +43,7 @@ import { getTextOutputValue } from '../../../kernels/execution/helpers';
      * - Desktop + Local Kernel + CDN
      * - Desktop + Local Kernel + No CDN
      */
-    suite.only(`IPyWidget Tests '${useCDN ? 'with CDN' : 'without CDN'}'`, function () {
+    suite.only(`IPyWidget Tests ${useCDN ? 'with CDN' : 'without CDN'}`, function () {
         const templateRootPath: Uri =
             workspace.workspaceFolders && workspace.workspaceFolders.length > 0
                 ? urlPath.joinPath(workspace.workspaceFolders[0].uri, 'widgets', 'notebooks')
@@ -255,14 +255,14 @@ import { getTextOutputValue } from '../../../kernels/execution/helpers';
             await click(comms, cell0, 'button');
             await assertOutputContainsHtml(cell0, comms, ['>Figure 1<', '<canvas', 'Download plot']);
         });
-        test('Render IPySheets', async () => {
+        test.only('Render IPySheets', async () => {
             const comms = await initializeNotebook({ templateFile: 'ipySheet_widgets.ipynb' });
             const [, cell1] = vscodeNotebook.activeNotebookEditor!.notebook.getCells();
 
             await executeCellAndWaitForOutput(cell1, comms);
             await assertOutputContainsHtml(cell1, comms, ['Hello', 'World', '42.000']);
         });
-        test('Render IPySheets & search', async () => {
+        test.only('Render IPySheets & search', async () => {
             const comms = await initializeNotebook({ templateFile: 'ipySheet_widgets_search.ipynb' });
             const [, cell1, cell2] = vscodeNotebook.activeNotebookEditor!.notebook.getCells();
 
